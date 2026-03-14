@@ -17,7 +17,7 @@
 
     <div class="flex items-center justify-center">
 
-        <div class="bg-white w-96 p-8 rounded-xl">
+        <div class="bg-gray-100 w-96 p-8 rounded-xl mt-15 shadow">
 
             <div class="flex justify-center mb-4">
                 <img src="./assets/github-logo.png" class="w-16">
@@ -27,17 +27,16 @@
             <p class="text-center text-gray-500 mb-6">Sign in to manage issues</p>
 
             <label class="text-sm">Username</label>
-            <input class="border-none w-full p-2 rounded mb-3" placeholder="Enter Username">
+            <input id="input-username" class="border-none w-full p-2 rounded mb-3" type="text" placeholder="Enter Username">
 
             <p class="text-xs text-indigo-700 mb-2">Default: admin</p>
 
             <label class="text-sm">Password</label>
-            <input type="password" class="border-none w-full p-2 rounded mb-3" placeholder="Enter Password">
+            <input id="input-pin" type="password" class="border-none w-full p-2 rounded mb-3" placeholder="Enter Password">
 
             <p class="text-xs text-indigo-700 mb-4">Default: admin123</p>
 
-            <button 
-                class="btn w-full py-2 text-white rounded-xl bg-indigo-700">
+            <button id="login-btn" class="btn w-full py-2 text-white rounded-xl bg-indigo-700">
                 Sign In
             </button>
 
@@ -48,13 +47,15 @@
 
 
             <div class="p-3 rounded text-sm text-center">
-                <p><b>Username:</b> admin</p>
-                <p><b>Password:</b> admin123</p>
+                <p><span class="font-bold">Username:</span> admin</p>
+                <p><span class="font-bold">Password:</span> admin123</p>
             </div>
 
         </div>
 
     </div>
+    
+    <script src="./script/login.js"></script>
 
 </body>
 
