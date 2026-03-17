@@ -7,7 +7,7 @@ document.getElementById("login-btn").addEventListener("click", function () {
 
     if(username === "admin" && pin === "admin123"){
         alert("Login Successful");
-        window.location.assign("/home.html")
+        window.location.assign("home.html")
     }else{
         alert("Invalid Username or Password!!!");
         return;
