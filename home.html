@@ -17,7 +17,7 @@
 </head>
 
 <body>
-
+   
 
 
     <!-- navbar  -->
@@ -82,6 +82,17 @@
     <div id="spinner" class="hidden">
         <h1 class="text-center text-9xl animate-spin"><i class="fa-solid fa-spinner"></i></h1>
     </div>
+
+    <!-- modal  -->
+     <div id="modal" class="fixed inset-0 hidden items-center justify-center">
+        <div class="bg-white p-6 rounded w-[400px] relative">
+            <button id="closeModal" class="absolute right-0 top-2 text-shadow-lg font-bold">
+                x
+            </button>
+            <div id="modalContent"></div>
+        </div>
+     </div>
+
 
    
     <script src="./script/script.js"></script>
