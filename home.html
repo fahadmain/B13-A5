@@ -18,6 +18,8 @@
 
 <body>
 
+
+
     <!-- navbar  -->
 
     <div class="navbar bg-base-100 shadow-sm w-11/12 mx-auto">
@@ -26,9 +28,9 @@
             <a class="btn btn-ghost text-xl">GitHub Issues Tracker</a>
         </div>
         <div class="flex gap-2">
-            <input type="text" placeholder="Search issues" class="input input-bordered w-24 md:w-auto" />
+            <input id="searchText" type="text" placeholder="Search issues" class="input input-bordered w-24 md:w-auto" />
             <div class="dropdown dropdown-end">
-                <button id="login-btn" class="btn w-full py-2 text-white rounded bg-indigo-700"><i
+                <button onclick="searchIssue()" class="btn w-full py-2 text-white rounded bg-indigo-700"><i
                         class="fa-solid fa-plus"></i>
                     New Issue
                 </button>
@@ -58,11 +60,11 @@
             </div>
             <div class="flex gap-3">
                 <div class="flex items-center justify-center gap-1">
-                    <div class="border border-none rounded-[50%] w-2 h-2 bg-[#00A96E]"></div>
+                    <div class="border border-none rounded-[50%] w-2 h-2 bg-green-500"></div>
                     <p>Open</p>
                 </div>
                 <div class="flex items-center justify-center gap-1">
-                    <div class="border border-none rounded-[50%] w-2 h-2 bg-[#A855F7]"></div>
+                    <div class="border border-none rounded-[50%] w-2 h-2 bg-purple-500"></div>
                     <p>Closed</p>
                 </div>
 
@@ -70,19 +72,18 @@
         </div>
 
         <!-- card sections  -->
-        <div id="issue-container" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 mt-10 mb-5">
+        <div id="issue-container" class="grid grid-cols-1 place-items-center md:grid-cols-2 lg:grid-cols-4 gap-4 mt-10 mb-5">
 
         </div>
 
     </section>
 
     <!-- spinner  -->
-     <div id="spinner" class="hidden">
+    <div id="spinner" class="hidden">
         <h1 class="text-center text-9xl animate-spin"><i class="fa-solid fa-spinner"></i></h1>
-     </div>
+    </div>
 
-     
-
+   
     <script src="./script/script.js"></script>
 </body>
 

@@ -7,39 +7,70 @@ let issues = [];
 spinner.classList.remove("hidden");
 
 fetch("https://phi-lab-server.vercel.app/api/v1/lab/issues")
-.then((res) => res.json())
-.then((data) => {
-    issues = data.data
-    console.log(issues);
-    renderIssues("all");
-    spinner.classList.add("hidden");
-});
+    .then((res) => res.json())
+    .then((data) => {
+        issues = data.data
+        console.log(issues);
+        renderIssues("all");
+        spinner.classList.add("hidden");
+    });
 
 
 // display data 
-function renderIssues(type){
+function renderIssues(type) {
     container.innerHTML = "";
 
     let filtered = [];
 
-    if(type === "all"){
+    if (type === "all") {
         filtered = issues;
     }
 
-    if(type === "open"){
+    if (type === "open") {
         filtered = issues.filter((i) => i.status === "open");
     }
 
-    if(type === "closed"){
+    if (type === "closed") {
         filtered = issues.filter((i) => i.status === "closed");
     }
 
-    filtered.forEach((issue) =>{
+    filtered.forEach((issue) => {
         let card = document.createElement("div");
 
-        let border = issue.status === "open" ? "border-t-[#00A96E]" : "border-t-[#A855F7]";
-        card.className = `border border-t-4 ${border} p-2`;
-        card.innerHTML = `${issue.title}`;
+        let statusImg = issue.status === "open"
+            ? "./assets/Open-Status.png"
+            : "./assets/Closed-Status.png";
+
+        let priorityStyle = "";
+
+        if (issue.priority === "high") {
+            priorityStyle = "bg-red-100 text-red-500";
+        } else if (issue.priority === "medium") {
+            priorityStyle = "bg-yellow-100 text-yellow-600";
+        } else {
+            priorityStyle = "bg-gray-200 text-gray-500";
+        }
+
+        let border = issue.status === "open" ? "border-t-green-500" : "border-t-purple-500";
+        card.className = `border-t-4 card bg-gray-100 w-80 h-96 shadow-xl rounded-xl ${border}`;
+        card.innerHTML = `<div class="card-body my-8 ">
+            <div class="flex justify-between">
+                <p><img src="${statusImg}" alt=""></p>
+                <span class="${priorityStyle} rounded-full font-semibold text-center w-20">${issue.priority}</span>
+            </div>
+            <h2 class="font-bold text-lg">${issue.title}</h2>
+            <p class="text-gray-500 ">${issue.description}</p>
+
+            <div class="flex gap-2">
+                <span class="bg-red-100 text-red-500 font-bold w-16 text-center rounded-xl p-1 text-xs flex gap-1 items-center"><i class="fa-solid fa-bug"></i>BUG</span>
+                <span class="bg-yellow-100 text-yellow-500 font-bold w-32 text-center rounded-xl p-1 text-xs flex gap-1 items-center"><i class="fa-regular fa-life-ring"></i>HELP WANTED</span>
+            </div>
+
+            <span class="text-gray-500">${issue.author}</span>
+            <span class="text-gray-500">${issue.createdAt}</span>
+
+            
+        </div>`;
 
         container.appendChild(card);
     })
@@ -75,4 +106,19 @@ function setActive(tab) {
 
     tab.classList.remove("bg-white");
     tab.classList.add("bg-indigo-700", "text-white");
+}
+
+function searchIssue() {
+
+    let text = document.getElementById("searchText").value
+
+    fetch(`https://phi-lab-server.vercel.app/api/v1/lab/issues/search?q=${text}`)
+
+
+        .then((res) => res.json())
+        .then((data) => {
+            issues = data.data
+            renderIssues("all");
+        });
+
 }
