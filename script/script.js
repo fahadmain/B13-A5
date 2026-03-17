@@ -34,6 +34,8 @@ function renderIssues(type) {
         filtered = issues.filter((i) => i.status === "closed");
     }
 
+    document.getElementById("count").innerText = `${filtered.length} Issues`;
+
     filtered.forEach((issue) => {
         let card = document.createElement("div");
 
